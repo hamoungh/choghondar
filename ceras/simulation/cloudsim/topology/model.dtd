@@ -1,0 +1,45 @@
+<!ELEMENT	Model (Datacenter+,User+,SimulationSpec)>
+
+<!ELEMENT	Datacenter (Host+)>
+<!ATTLIST	Datacenter name ID #REQUIRED>
+<!ATTLIST   Datacenter arch CDATA 'x86'>				<!--  system architecture (String)	-->
+<!ATTLIST   Datacenter os CDATA 'Linux'>				<!--  operating system (String)	-->
+<!ATTLIST   Datacenter vmm CDATA 'Xen'>					<!-- (String) -->
+<!ATTLIST   Datacenter time_zone CDATA '10.0'>			<!--  time zone this resource located	(double)-->
+<!ATTLIST   Datacenter cost CDATA '3.0'> 				<!--  the cost of using processing in this resource	(double)-->
+<!ATTLIST   Datacenter costPerMem CDATA '0.05'>			<!--  the cost of using memory in this resource	(double)-->
+<!ATTLIST   Datacenter costPerStorage CDATA '0.1'>		<!--  the cost of using storage in this resource (double)-->
+<!ATTLIST   Datacenter costPerBw CDATA '0.1'>			<!--  the cost of using bw in this resource	(double)-->
+
+<!ELEMENT	Host (Core+)>
+<!ATTLIST	Host hostId CDATA #REQUIRED>					<!-- int -->
+<!ATTLIST	Host ram  CDATA  '16384'> 					<!-- host memory (MB) (int) -->
+<!ATTLIST	Host storage  CDATA  '1000000'> 			<!-- host storage (long) -->
+<!ATTLIST	Host bw  CDATA  '10000'>					<!-- int --> 
+<!ATTLIST	Host vmScheduler 
+	(TimeShared|SpaceShared) 'TimeShared'>				<!-- -->
+
+<!ELEMENT	Core EMPTY>
+<!ATTLIST	Core id CDATA #REQUIRED>
+<!ATTLIST	Core mips CDATA '1000'>						<!-- int -->
+
+<!ELEMENT	User (VM+,Workload)>
+<!ATTLIST	User userId ID #REQUIRED>
+
+<!ELEMENT	Workload EMPTY>
+<!ATTLIST	Workload meanDemand CDATA #REQUIRED>			<!-- int -->
+<!ATTLIST	Workload meanInterArrival CDATA #REQUIRED>		<!-- int -->
+<!ATTLIST	Workload arrivedNumLimit CDATA #REQUIRED>		<!-- int -->
+
+<!ELEMENT	VM EMPTY>
+<!ATTLIST	VM imageSize CDATA '10000'>					<!-- the image size (MB) (long) -->
+<!ATTLIST	VM mips CDATA '400'>						<!-- the MIPS (int)-->
+<!ATTLIST	VM peNumber CDATA '1'>						<!-- the number of cpus (int)-->
+<!ATTLIST	VM ram CDATA '512'>							<!-- the vm memory/ram (MB) (int)-->
+<!ATTLIST	VM bw CDATA '1000'>							<!-- the bw (long)-->
+<!ATTLIST	VM priority CDATA '1'>						<!-- the priority (int)-->
+<!ATTLIST	VM cloudletScheduler 
+	(TimeShared|SpaceShared) 'TimeShared'>				<!-- -->
+
+<!ELEMENT	SimulationSpec EMPTY>
+<!ATTLIST	SimulationSpec measurementCycle CDATA '10000'>

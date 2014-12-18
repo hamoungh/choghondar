@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE Model SYSTEM "model.dtd">
+<Model>
+	<Datacenter arch="x86" cost="3.0" costPerBw="0.1" costPerMem="0.05" costPerStorage="0.1" name="Datacenter_0" os="Linux" time_zone="10.0" vmm="Xen">
+
+	<Host hostId="1"><Core id="0" mips="1200"/></Host></Datacenter>
+		
+	<SimulationSpec measurementCycle="20"/>
+<User userId="1"><Workload arrivedNumLimit="20" meanDemand="4000" meanInterArrival="22"/><VM bw="1000" cloudletScheduler="SpaceShared" imageSize="1000" mips="400" peNumber="1" preferedHostId="1" priority="1" ram="512"/></User></Model>
